@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://x4imthp5kxfi"]
+
+[ext_resource type="Script" uid="uid://nl10siyjvjju" path="res://Main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://brcn1yc7bnt61" path="res://Player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cmir2mxvxik6y" path="res://icon.svg" id="2_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(207.5, 207)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(238.5, -531.5)
+scale = Vector2(1.61719, 1.60156)
+texture = ExtResource("2_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(239, -532)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(351, 351)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 67.0
+offset_top = 20.0
+offset_right = 107.0
+offset_bottom = 43.0
+text = "Current Score: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOverPanel" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = -0.150174
+anchor_right = 0.341146
+anchor_bottom = 0.445988
+offset_left = 233.0
+offset_top = 288.0
+offset_right = 273.001
+offset_bottom = 328.0
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.257425
+anchor_top = 0.0364741
+anchor_right = 0.673267
+anchor_bottom = 0.0364741
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Game Over!"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FinalScoreLabel" type="Label" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.191419
+anchor_top = 0.179331
+anchor_right = 0.745874
+anchor_bottom = 0.355623
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.184818
+anchor_top = 0.483282
+anchor_right = 0.80528
+anchor_bottom = 0.996962
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Restart"
+metadata/_edit_use_anchors_ = true
+
+[node name="HighScoreLabel" type="Label" parent="UI"]
+offset_left = 68.0
+offset_top = 54.0
+offset_right = 108.0
+offset_bottom = 77.0
+text = "High Score: 0"
