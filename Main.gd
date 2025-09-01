@@ -8,6 +8,7 @@ var high_score = 0
 @onready var score_label = $UI/ScoreLabel
 @onready var high_score_label = $UI/HighScoreLabel
 @onready var camera = $Camera2D
+@onready var music = $Music
 
 var game_over_panel
 var final_score_label  
@@ -15,8 +16,8 @@ var restart_button
 var start_label
 
 func _ready():
-	DisplayServer.window_set_size(Vector2i(700, 700))
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
+	#DisplayServer.window_set_size(Vector2i(700, 700))
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	create_boundaries()
 	game_over_panel = get_node_or_null("UI/GameOverPanel")
 	final_score_label = get_node_or_null("UI/GameOverPanel/FinalScoreLabel")
@@ -30,15 +31,19 @@ func _ready():
 		restart_button.pressed.connect(restart_game)
 	load_high_score()
 	update_labels()
+	if music:
+		music.stream = load("res://music.mp3")
+		music.stream.loop = true
+		music.play()
 
 func create_boundaries():
 	var thickness = 10
 	var size = Vector2(700, 700)
 	var boundaries = [
-		[Vector2(size.x / 2, -thickness / 2), Vector2(size.x, thickness)], # top
-		[Vector2(size.x / 2, size.y + thickness / 2), Vector2(size.x, thickness)], # bottom
-		[Vector2(-thickness / 2, size.y / 2), Vector2(thickness, size.y)], # left
-		[Vector2(size.x + thickness / 2, size.y / 2), Vector2(thickness, size.y)] # right
+		[Vector2(size.x / 2, -thickness / 2), Vector2(size.x, thickness)],
+		[Vector2(size.x / 2, size.y + thickness / 2), Vector2(size.x, thickness)],
+		[Vector2(-thickness / 2, size.y / 2), Vector2(thickness, size.y)],
+		[Vector2(size.x + thickness / 2, size.y / 2), Vector2(thickness, size.y)]
 	]
 	for boundary in boundaries:
 		var pos = boundary[0]

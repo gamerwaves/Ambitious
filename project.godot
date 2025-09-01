@@ -13,7 +13,6 @@ config_version=5
 config/name="Ambitious"
 run/main_scene="uid://x4imthp5kxfi"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 

@@ -9,9 +9,12 @@ var is_alive = true
 var has_started = false
 
 @onready var game_manager = get_parent()
+@onready var jump_sound = $JumpSound
 
 func _ready():
 	position = Vector2(100, get_viewport().size.y / 2)
+	if jump_sound:
+		jump_sound.stream = load("res://jump.mp3")
 
 func _physics_process(delta):
 	if not is_alive:
@@ -32,6 +35,8 @@ func _physics_process(delta):
 func flap():
 	if is_alive:
 		velocity.y = FLAP_STRENGTH
+		if jump_sound:
+			jump_sound.play()
 
 func die():
 	if is_alive:

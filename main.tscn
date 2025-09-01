@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://x4imthp5kxfi"]
+[gd_scene load_steps=6 format=3 uid="uid://x4imthp5kxfi"]
 
-[ext_resource type="Script" uid="uid://nl10siyjvjju" path="res://Main.gd" id="1_1bvp3"]
-[ext_resource type="Script" uid="uid://brcn1yc7bnt61" path="res://Player.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cmir2mxvxik6y" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://buxlhxqa466w4" path="res://Main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://erimfylcgi0t" path="res://Player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dqqpgp7aau6ke" path="res://bg.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://21oh7ib18cv3" path="res://icon.png" id="4_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(207.5, 207)
@@ -10,16 +11,23 @@ size = Vector2(207.5, 207)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(349.475, 349.475)
+scale = Vector2(0.351349, 0.34935)
+texture = ExtResource("4_1bvp3")
+
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ig7tw")
 
+[node name="JumpSound" type="AudioStreamPlayer" parent="Player"]
+
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(238.5, -531.5)
-scale = Vector2(1.61719, 1.60156)
-texture = ExtResource("2_0xm2m")
+position = Vector2(251.611, 129.975)
+scale = Vector2(0.0620452, 0.126307)
+texture = ExtResource("4_lquwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(239, -532)
+position = Vector2(251, 126)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -89,3 +97,5 @@ offset_top = 54.0
 offset_right = 108.0
 offset_bottom = 77.0
 text = "High Score: 0"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
